@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  db:
+    image: mongo:4.2.8-bionic
+    container_name: MongoDB
+    restart: on-failure
+    ports:
+      - '27017:27017'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - mongo-data:/data/db
+      # - ./data/db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: dbuser
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+      MONGO_INITDB_DATABASE: database_name
+    # devices:
+    #   - '/dev/ttyUSB0:/dev/ttyUSB0'
+
+# volumes:
+#   mongo-data:
