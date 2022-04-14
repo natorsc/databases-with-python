@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2017-CU12-ubuntu
+    container_name: SQLServer
+    restart: on-failure
+    ports:
+      - '1433:1433'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - mssql-data:/var/opt/mssql
+      # - ./data/db:/var/opt/mssql
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: 'Python.123456'
+      MSSQL_PID: 'Express'
+    # devices:
+    #   - "/dev/ttyUSB0:/dev/ttyUSB0"
+
+# volumes:
+#   mssql-data:

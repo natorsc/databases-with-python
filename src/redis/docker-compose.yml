@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  db:
+    image: redis:6.0.6-alpine3.12
+    container_name: Redis
+    restart: on-failure
+    ports:
+      - '6379:6379'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      # - redis-data:/var/lib/mysql
+      # - ./data/db:/var/lib/mysql
+    # devices:
+    #   - "/dev/ttyUSB0:/dev/ttyUSB0"
+
+# volumes:
+#   redis-data:
