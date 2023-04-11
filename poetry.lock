@@ -262,7 +262,7 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "redis"
-version = "4.3.4"
+version = "4.5.4"
 description = "Python client for Redis database and key-value store"
 category = "main"
 optional = false
