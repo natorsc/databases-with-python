@@ -1,44 +1,33 @@
-[tool.poetry]
+[project]
 name = "databases-with-python"
 version = "0.1.0"
-description = "Exemplo de CRUD (Create, Read, Update e Delete) com a linguagem de programação Python e os principais bancos de dados do mercado."
-authors = ["Renato Cruz <zkpcvm6dz@mozmail.com>"]
-
-license = "MIT"
-readme = "README.md"
-homepage = "https://github.com/natorsc/databases-with-python"
-repository = "https://github.com/natorsc/databases-with-python"
-documentation = "https://databases.justcode.com.br/"
-keywords = ["python", "databases", "mysql", "postgresql", "mariadb", "sqlite", "mongodb", "redis"]
-
-classifiers = [
-    "Topic :: Database",
-    "Operating System :: Microsoft",
-    "Operating System :: Microsoft :: Windows :: Windows 10",
-    "Operating System :: POSIX :: Linux",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "License :: OSI Approved :: MIT License",
+description = "Default template for PDM package"
+authors = [
+    {name = "Renato Cruz", email = "natorsc@gmail.com"},
 ]
+dependencies = [
+    "python-lsp-server[all]>=1.11.0",
+    "mysql-connector-python>=8.3.0",
+    "mongoengine>=0.28.2",
+    "pymongo>=4.7.0",
+    "pyodbc>=5.1.0",
+    "redis>=5.0.4",
+    "SQLAlchemy>=2.0.29",
+    "psycopg[binary,pool]>=3.1.18",
+]
+requires-python = ">=3.11,<3.13"
+readme = "README.md"
+license = {text = "MIT"}
 
-[tool.poetry.dependencies]
-python = "^3.10"
-mysql-connector-python = "^8.0.28"
-mongoengine = "^0.24.1"
-pymongo = "^4.1.1"
-pyodbc = "^4.0.32"
-redis = "^4.5.4"
-SQLAlchemy = "^1.4.35"
-psycopg = {extras = ["binary"], version = "^3.0.11"}
 
-[tool.poetry.group.dev.dependencies]
-pylint = "^2.13.0"
-autopep8 = "^1.6.0"
-
-[tool.poetry.urls]
-"Bug Tracker" = "https://github.com/natorsc/databases-with-python/issues"
-"Blog" = "https://blog.justcode.com.br/"
-
-[build-system]
-requires = ["poetry_core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[project.optional-dependencies]
+docs = [
+    "sphinx>=7.3.7",
+    "sphinx-copybutton>=0.5.2",
+    "sphinx-inline-tabs>=2023.4.21",
+    "sphinxext-opengraph>=0.9.1",
+    "sphinx-sitemap>=2.6.0",
+    "furo>=2024.4.27",
+]
+[tool.pdm]
+distribution = false

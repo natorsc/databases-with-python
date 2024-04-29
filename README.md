@@ -79,6 +79,9 @@ Driver do MS Access:
 
 - [Python (pyodbc)](./src/ms-access).
 
+Dependência
+> brew install unixodbc
+
 ---
 
 ### [SQL Server](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)
