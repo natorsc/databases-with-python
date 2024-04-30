@@ -10,18 +10,13 @@ from sqlalchemy.orm import sessionmaker
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 
 # In-Memory Database.
-# engine = create_engine('sqlite:///:memory:')
-engine = create_engine('sqlite://')
+# engine = create_engine(url='sqlite://')
+engine = create_engine(url='sqlite:///:memory:')
 
-# Database on file.
-# engine = create_engine(f'sqlite:///{BASE_DIR.joinpath("db.sqlite3")}')
-
-
-# Criar banco na memória
+# Local file.
+# engine = create_engine(url=f'sqlite:///{BASE_DIR.joinpath("db.sqlite3")}')
 
 
-# Criando uma classe 'Session' já configurada.
-# Session é instanciado posteriormente para interação com a tabela.
 Session = sessionmaker(bind=engine)
 
 Base = declarative_base()

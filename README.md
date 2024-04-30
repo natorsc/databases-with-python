@@ -120,19 +120,23 @@ Para verificar se o driver está instalado pode utilizar `print(drivers())`.
 
 Caso não seja listado o driver:
 
-- [Windows](https://docs.microsoft.com/pt-br/sql/connect/odbc/windows/system-requirements-installation-and-driver-files?view=sql-server-2017#installing-microsoft-odbc-driver-for-sql-server).
-- [Linux/macOS](https://docs.microsoft.com/pt-br/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-2017).
+- [Microsoft ODBC Driver for SQL Server (Windows)](https://learn.microsoft.com/pt-br/sql/connect/odbc/download-odbc-driver-for-sql-server).
+- [Microsoft ODBC Driver for SQL Server (Linux)](https://learn.microsoft.com/pt-br/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server).
+- [Microsoft ODBC Driver for SQL Server (macOS)](https://learn.microsoft.com/pt-br/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos).
+
 
 Cada versão do Microsoft SQL Server pode utilizar uma versão especifica do driver:
 
-- {SQL Server} = Lançado com o SQL Server 2000.
-- {SQL Native Client} = Lançado com o SQL Server 2005 (Também conhecido como versão 9.0).
-- {SQL Server Native Client 10.0} = Lançado com o SQL Server 2008.
-- {SQL Server Native Client 11.0} = Lançado com o SQL Server 2012.
-- {ODBC Driver 11 for SQL Server} = Suporta o SQL Server 2005 até 2014.
-- {ODBC Driver 13 for SQL Server} = Suporta o SQL Server 2005 até 2016.
-- {ODBC Driver 13.1 for SQL Server} = Suporta o SQL Server 2008 Até 2016.
-- {ODBC Driver 17 for SQL Server} = Suporta SQL Server 2008 Até 2017.
+- **SQL Server**: Lançado com o SQL Server 2000.
+- **SQL Native Client**: Lançado com o SQL Server 2005 (Também conhecido como versão 9.0).
+- **SQL Server Native Client 10.0**: Lançado com o SQL Server 2008.
+- **SQL Server Native Client 11.0**: Lançado com o SQL Server 2012.
+- **ODBC Driver 11 for SQL Server**: Suporta o SQL Server 2005 até 2014.
+- **ODBC Driver 13 for SQL Server**: Suporta o SQL Server 2005 até 2016.
+- **ODBC Driver 13.1 for SQL Server**: Suporta o SQL Server 2008 Até 2016.
+- **ODBC Driver 17 for SQL Server**: Suporta SQL Server 2008 Até 2017.
+- **ODBC Driver 17 for SQL Server**: Suporta SQL Server 2008 Até 2017.
+- **ODBC Driver 18 for SQL Server**: Suporta SQL Server 2019 ou superior.
 
 Ao utilizar o Windows Serve configurar:
 
@@ -201,3 +205,223 @@ poetry export \
 ```
 
 ---
+
+# Docker
+
+- [Site oficial](https://www.docker.com/community/).
+
+## Docker desktop
+
+- [Site oficial](https://www.docker.com/products/docker-desktop/).
+
+### macOS
+
+```bash
+brew install \
+--cask docker
+```
+
+sudo rm -rf /opt/homebrew/share/zsh/site-functions/_docker
+sudo rm -rf /opt/homebrew/share/fish/vendor_completions.d/docker.fish
+
+### Linux
+
+#### Arch Linux
+
+[Site oficial](https://docs.docker.com/desktop/install/archlinux/).
+
+```bash
+curl \
+-o docker-desktop.pkg.tar.zst \
+https://desktop.docker.com/linux/main/amd64/145265/docker-desktop-4.29.0-x86_64.pkg.tar.zst
+```
+
+```bash
+sudo pacman \
+-U ./docker-desktop.pkg.tar.zst
+```
+
+```bash
+systemctl --user \
+start docker-desktop
+```
+
+```bash
+systemctl --user \
+enable docker-desktop
+```
+
+#### Fedora
+
+[Site oficial](https://docs.docker.com/desktop/install/fedora/).
+
+```bash
+curl \
+-o docker-desktop.rpm \
+https://desktop.docker.com/linux/main/amd64/145265/docker-desktop-4.29.0-x86_64.rpm
+```
+
+```bash
+sudo dnf install \
+./docker-desktop.rpm
+```
+
+```bash
+systemctl --user \
+start docker-desktop
+```
+
+```bash
+systemctl --user \
+enable docker-desktop
+```
+
+#### Ubuntu
+
+[Site oficial](https://docs.docker.com/desktop/install/ubuntu/).
+
+```bash
+curl \
+-o docker-desktop.deb \
+https://desktop.docker.com/linux/main/amd64/145265/docker-desktop-4.29.0-amd64.deb
+```
+
+```bash
+sudo apt install \
+./docker-desktop.deb
+```
+
+```bash
+systemctl --user \
+start docker-desktop
+```
+
+```bash
+systemctl --user \
+enable docker-desktop
+```
+
+---
+
+## Docker compose
+
+### macOS
+
+```bash
+brew install \
+docker-compose
+```
+
+### Linux
+
+#### Arch Linux
+
+```bash
+sudo pacman -S \
+docker-compose
+```
+
+#### Fedora
+
+```bash
+sudo dnf install \
+docker-compose
+```
+
+#### Ubuntu
+
+```bash
+sudo apt install \
+docker-compose
+```
+
+
+
+
+
+
+---
+
+# Podman
+
+- [Site oficial](https://podman-desktop.io/).
+
+
+
+### macOS
+
+```bash
+brew install \
+podman
+```
+
+```bash
+podman machine init
+```
+
+```bash
+podman machine start
+```
+
+### Linux
+
+#### Arch Linux
+
+```bash
+sudo pacman -S \
+podman
+```
+
+#### Fedora
+
+```bash
+sudo dnf install \
+podman
+```
+
+#### Ubuntu
+
+```bash
+sudo apt install \
+podman
+```
+
+## Podman desktop
+
+- [Site oficial](https://podman-desktop.io/).
+
+### Microsoft Windows
+
+#### Winget
+
+```ps1
+winget install -e --id RedHat.Podman-Desktop
+```
+
+## Linux
+
+### Flatpak
+
+```bash
+flatpak install \
+flathub io.podman_desktop.PodmanDesktop
+```
+
+### macOS
+
+#### Homebrew
+
+```bash
+brew install --cask \
+podman-desktop
+```
+
+## Podman compose
+
+```bash
+brew install \
+podman \
+podman-compose
+```
+
+
