@@ -1,18 +1,26 @@
 # -*- coding: utf-8 -*-
-"""Exemplo de CRUD com Python, SQLAlchemy e SQLite3."""
+'''CRUD - SQLAlchemy - SQLite3.'''
+
+import pathlib
 
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# Para debug utilizar ``echo=True``:
-# engine = create_engine('sqlite:///db.sqlite3', echo=True)
-engine = create_engine('sqlite:///db.sqlite3')
+BASE_DIR = pathlib.Path(__file__).resolve().parent
+
+# In-Memory Database.
+# engine = create_engine('sqlite:///:memory:')
+engine = create_engine('sqlite://')
+
+# Database on file.
+# engine = create_engine(f'sqlite:///{BASE_DIR.joinpath("db.sqlite3")}')
+
 
 # Criar banco na memória
-# engine = create_engine('sqlite://')
 
-# Criando uma classe "Session" já configurada.
+
+# Criando uma classe 'Session' já configurada.
 # Session é instanciado posteriormente para interação com a tabela.
 Session = sessionmaker(bind=engine)
 
@@ -20,7 +28,7 @@ Base = declarative_base()
 
 
 class TableName(Base):
-    """Classe representa uma tabela do banco."""
+    '''Classe representa uma tabela do banco.'''
     # ``__tablename__`` - Define o nome da tabela.
     # Se o nome da tabela não for definido é utilizado o nome da classe.
     __tablename__ = 'table_name'
@@ -32,7 +40,7 @@ class TableName(Base):
     gender = Column('gender', String(10))
 
     def __init__(self, name=None, age=None, gender=None):
-        """Construtor.
+        '''Construtor.
 
         Utilizando o construtor para passar os valores no momento em
         que a classe é instanciada.
@@ -40,13 +48,13 @@ class TableName(Base):
         :param nome: (str) String com o valor que será salvo.
         :param idade: (int) Numero inteiro com o valor que será salvo.
         :param sexo: (str) String com o valor que será salvo.
-        """
+        '''
         self.name = name
         self.age = age
         self.gender = gender
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     # Removendo todas as tabelas do banco.
     Base.metadata.drop_all(engine)
 
