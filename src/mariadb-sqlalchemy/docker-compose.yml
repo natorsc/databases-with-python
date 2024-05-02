@@ -2,7 +2,7 @@ version: "3"
 
 services:
   db:
-    image: mariadb:11.4.1-rc-jammy
+    image: mariadb:11.3.2-jammy
     container_name: MariaDB
     restart: on-failure
     ports:

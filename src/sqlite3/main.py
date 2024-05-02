@@ -16,9 +16,9 @@ cur = con.cursor()
 cur.execute('DROP TABLE IF EXISTS table_name;')
 
 table_name = '''CREATE TABLE IF NOT EXISTS `table_name` (
-`user_id`   INTEGER         NOT NULL,
-`name`      VARCHAR(100)    NOT NULL,
-`age`       INTEGER(3)      NOT NULL,
+`user_id`   INTEGER     NOT NULL, AUTO_INCREMENT,
+`name`      VARCHAR(32) NOT NULL,
+`age`       INTEGER(3)  NOT NULL,
 PRIMARY KEY(user_id)
 );'''
 cur.execute(table_name)
@@ -30,8 +30,8 @@ user = ('Felipe', 35)
 cur.execute(insert_user, user)
 
 users = (
-        ('Augusto', 18),
-        ('Helena', 40,),
+    ('Augusto', 18),
+    ('Helena', 40),
 )
 cur.executemany(insert_user, users)
 

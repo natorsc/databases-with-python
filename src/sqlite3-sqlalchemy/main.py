@@ -3,117 +3,98 @@
 
 import pathlib
 
-from sqlalchemy import Column, Integer, String, create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+import sqlalchemy as sa
+
+from sqlalchemy.orm import DeclarativeBase, mapped_column, sessionmaker
+
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 
 # In-Memory Database.
-# engine = create_engine(url='sqlite://')
-engine = create_engine(url='sqlite:///:memory:')
+# engine = sa.create_engine(url='sqlite://')
+engine = sa.create_engine(url='sqlite:///:memory:')
 
 # Local file.
-# engine = create_engine(url=f'sqlite:///{BASE_DIR.joinpath("db.sqlite3")}')
+# engine = sa.create_engine(url=f'sqlite:///{BASE_DIR.joinpath("db.sqlite3")}')
 
 
 Session = sessionmaker(bind=engine)
 
-Base = declarative_base()
+
+class Base(DeclarativeBase):
+    pass
 
 
 class TableName(Base):
-    '''Classe representa uma tabela do banco.'''
-    # ``__tablename__`` - Define o nome da tabela.
-    # Se o nome da tabela não for definido é utilizado o nome da classe.
     __tablename__ = 'table_name'
 
-    # Colunas da tabela.
-    user_id = Column('user_id', Integer, primary_key=True)
-    name = Column('name', String(32))
-    age = Column('age', Integer)
-    gender = Column('gender', String(10))
+    user_id = mapped_column(primary_key=True)
+    name = mapped_column('name', sa.String(32))
+    age = mapped_column('age', sa.SmallInteger)
 
-    def __init__(self, name=None, age=None, gender=None):
-        '''Construtor.
-
-        Utilizando o construtor para passar os valores no momento em
-        que a classe é instanciada.
-
-        :param nome: (str) String com o valor que será salvo.
-        :param idade: (int) Numero inteiro com o valor que será salvo.
-        :param sexo: (str) String com o valor que será salvo.
-        '''
+    def __init__(self, name=None, age=None):
         self.name = name
         self.age = age
-        self.gender = gender
 
 
 if __name__ == '__main__':
-    # Removendo todas as tabelas do banco.
+    # Removing all tables from the database.
     Base.metadata.drop_all(engine)
 
-    # Criando todas as tabelas.
+    # Creating all tables.
     Base.metadata.create_all(engine)
 
-    # Criando uma sessão (add, commit, query, etc).
+    # Creating a session (add, commit, query, etc.).
     session = Session()
 
-    # Criando os dados que serão inseridos na tabela.
-    # Classe com o construtor.
-    user = TableName(name='Felipe', age=35, gender='Masculino')
-    # Inserindo registro na tabela.
+    # Create.
+    user = TableName(name='Felipe', age=35)
     session.add(user)
 
     users = [
-        TableName(name='Helena', age=20, gender='Feminino'),
-        TableName(name='João', age=50, gender='Masculino'),
+        TableName(name='Helena', age=20),
+        TableName(name='João', age=50),
     ]
-    # Inserindo vários registros na tabela.
+    # Bulk create.
     session.add_all(users)
 
-    # Caso não seja utilizado um construtor na classe
-    # os dados são passados depois de se criar a instancia.
+    # If a constructor is not used in the class,
+    # the data is passed after creating the instance.
     another_user = TableName()
     another_user.name = 'Camila'
     another_user.age = 50
-    another_user.gender = 'Feminino'
     session.add(another_user)
 
-    # Persistindo os dados.
+    # Persisting the data.
     session.commit()
 
-    # Consultar todos os registros.
+    # Read.
     records = session.query(TableName).all()
     for row in records:
-        print(f'ID: {row.user_id} - Nome: {row.name} - Idade: {row.age} - '
-              f'Sexo: {row.gender}')
+        print(f'ID: {row.user_id} - Name: {row.name} - Age: {row.age}')
     print('---\n')
 
-    # Consulta com filtro.
+    # Filter.
     records = session.query(TableName).filter(TableName.age > 40).all()
     for row in records:
-        print(f'ID: {row.user_id} - Nome: {row.name} - Idade: {row.age} - '
-              f'Sexo: {row.gender}')
+        print(f'ID: {row.user_id} - Nome: {row.name} - Idade: {row.age}')
     print('---\n')
 
-    # Alterar registro.
-    print('ANTES da alteração:')
+    # Update.
+    print('BEFORE the change:')
     record = session.query(TableName).filter(TableName.user_id == 1).first()
-    print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age} - '
-          f'Sexo: {record.gender}')
+    print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age}')
 
-    new_data = {'name': 'Rafaela', 'age': 50, 'gender': 'Feminino'}
+    new_data = {'name': 'Rafaela', 'age': 50}
     session.query(TableName).filter(TableName.user_id == 1).update(new_data)
     session.commit()
 
-    print('DEPOIS da alteração:')
+    print('AFTER the change:')
     record = session.query(TableName).filter(TableName.user_id == 1).first()
-    print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age} - '
-          f'Sexo: {record.gender}')
+    print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age}')
     print('---\n')
 
-    # Remover um registro da tabela.
+    # Delete.
     print('ANTES da remoção:')
     record = session.query(TableName).filter(TableName.user_id == 2).first()
     print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age} - '
