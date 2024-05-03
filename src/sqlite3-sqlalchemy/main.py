@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
 '''CRUD - SQLAlchemy - SQLite3.'''
 
+import datetime
 import pathlib
 
-import sqlalchemy as sa
-
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
+from sqlalchemy import SmallInteger, String
+from sqlalchemy import create_engine, func, insert, select, update, delete
+from sqlalchemy.orm import DeclarativeBase, Mapped
+from sqlalchemy.orm import sessionmaker, mapped_column
 
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 
 # In-Memory Database.
 # engine = sa.create_engine(url='sqlite://')
-engine = sa.create_engine(url='sqlite:///:memory:')
+engine = create_engine(url='sqlite:///:memory:')
 
 # Local file.
-# engine = sa.create_engine(url=f'sqlite:///{BASE_DIR.joinpath("db.sqlite3")}')
+# engine = sa.create_engine(url=f'sqlite:///{BASE_DIR.joinpath('db.sqlite3')}')
 
 
 Session = sessionmaker(bind=engine)
@@ -28,17 +30,13 @@ class Base(DeclarativeBase):
 class TableName(Base):
     __tablename__ = 'table_name'
 
-    pk: Mapped[int] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column('name', sa.String(32))
-    age: Mapped[int] = mapped_column('age', sa.SmallInteger)
-
-    def __init__(self, name=None, age=None):
-        self.name = name
-        self.age = age
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column('name', String(32))
+    age: Mapped[int] = mapped_column('age', SmallInteger)
+    created_at: Mapped[datetime.datetime]
 
     def __repr__(self) -> str:
-        return f'TableName(id={self.pk!r}, name={self.name!r}, age={self.age!r})'
-
+        return f'TableName(id={self.id}, name={self.name}, age={self.age})'
 
 
 if __name__ == '__main__':
@@ -52,65 +50,111 @@ if __name__ == '__main__':
     session = Session()
 
     # Create.
-    user = TableName(name='Felipe', age=35)
-    session.add(user)
+    session.execute(
+        insert(TableName)
+        .values(
+            name='felipe',
+            age=35,
+            created_at=func.now(),
+        ),
+    )
+    # Create and return the object.
+    result = session.scalar(
+        insert(TableName)
+        .values(
+            name='josé',
+            age=35,
+            created_at=func.now(),
+        ).returning(TableName),
+    )
+    if result:
+        print(result)
 
-    users = [
-        TableName(name='Helena', age=20),
-        TableName(name='João', age=50),
-    ]
     # Bulk create.
-    session.add_all(users)
+    session.execute(
+        statement=insert(TableName).values(created_at=func.now()),
+        params=[
+            {'name': 'renato', 'age': 40},
+            {'name': 'sandy', 'age': 19},
+        ],
+    )
 
-    # If a constructor is not used in the class,
-    # the data is passed after creating the instance.
-    another_user = TableName()
-    another_user.name = 'Camila'
-    another_user.age = 50
-    session.add(another_user)
+    result = session.scalars(
+        insert(TableName).values(created_at=func.now()).returning(TableName),
+        [
+            {'name': 'patrick', 'age': 20},
+            {'name': 'gisele', 'age': 21},
+        ],
+    )
+    if result:
+        print(result.fetchall())
 
-    # Persisting the data.
-    session.commit()
+    # # Persisting the data.
+    # session.commit()
 
     # Read.
-    records = session.query(TableName).all()
-    for row in records:
-        print(f'ID: {row.user_id} - Name: {row.name} - Age: {row.age}')
-    print('---\n')
+    print(session.get(TableName, 1))
+    result = session.scalars(select(TableName))
+    if result:
+        print(f'Todos: {result.all()}')
+    # records = session.query(TableName).all()
+    # for row in records:
+    #     print(f'ID: {row.user_id} - Name: {row.name} - Age: {row.age}')
+    # print('---\n')
+    # https://docs.sqlalchemy.org/en/20/changelog/migration_20.html#migration-orm-usage.
+    result = session.scalars(
+        select(TableName)
+        .where(TableName.age > 40)
+    )
+    print(result.all())
 
     # Filter.
-    records = session.query(TableName).filter(TableName.age > 40).all()
-    for row in records:
-        print(f'ID: {row.user_id} - Nome: {row.name} - Idade: {row.age}')
-    print('---\n')
 
-    # Update.
-    print('BEFORE the change:')
-    record = session.query(TableName).filter(TableName.user_id == 1).first()
-    print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age}')
+    # result = session.query(TableName).filter(TableName.age > 40).all()
+    # print(result)
+    # # Scalar retorna o objeto.
+    # result = session.scalar(sa.select(TableName).where(TableName.age > 40))
+    # result = session.scalars(sa.select(TableName).where(TableName.age > 40))
+    # print(result)
+    # data = result.fetchall()
+    # print(data[0].name)
+    # # for row in records:
+    # #     print(f'ID: {row.user_id} - Nome: {row.name} - Idade: {row.age}')
+    # # print('---\n')
 
-    new_data = {'name': 'Rafaela', 'age': 50}
-    session.query(TableName).filter(TableName.user_id == 1).update(new_data)
-    session.commit()
+    # # # Update.
+    # # print('BEFORE the change:')
+    # # record = session.query(TableName).filter(TableName.user_id == 1).first()
+    # # print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age}')
+    # record = session.scalar(sa.select(TableName).where(TableName.id == 1))
+    # print(record)
 
-    print('AFTER the change:')
-    record = session.query(TableName).filter(TableName.user_id == 1).first()
-    print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age}')
-    print('---\n')
+    # # new_data = {'name': 'Rafaela', 'age': 50}
+    # # session.query(TableName).filter(TableName.user_id == 1).update(new_data)
+    # # session.commit()
 
-    # Delete.
-    print('ANTES da remoção:')
-    record = session.query(TableName).filter(TableName.user_id == 2).first()
-    print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age} - '
-          f'Sexo: {record.gender}')
+    # # print('AFTER the change:')
+    # # record = session.query(TableName).filter(TableName.user_id == 1).first()
+    # # print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age}')
+    # # print('---\n')
 
-    session.query(TableName).filter(TableName.user_id == 2).delete()
-    session.commit()
+    # # # Delete.
+    # # print('ANTES da remoção:')
+    # # record = session.query(TableName).filter(TableName.user_id == 2).first()
+    # # print(f'ID: {record.user_id} - Nome: {record.name} - Idade: {record.age} - '
+    # #       f'Sexo: {record.gender}')
 
-    print('DEPOIS da remoção:')
-    record = session.query(TableName).filter(TableName.user_id == 2).first()
-    print(record)
-    print('---\n')
+    # # session.query(TableName).filter(TableName.user_id == 2).delete()
+    # record = session.scalar(sa.select(TableName).where(TableName.id == 1))
+    # session.delete(record)
+    # session.commit()
+    # record = session.scalar(sa.select(TableName))
+    # print(record)
 
-    # Fechando a sessão.
-    session.close()
+    # print('DEPOIS da remoção:')
+    # record = session.query(TableName).filter(TableName.user_id == 2).first()
+    # print(record)
+    # print('---\n')
+
+    # # Fechando a sessão.
+    # session.close()
