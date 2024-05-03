@@ -5,7 +5,7 @@ import pathlib
 
 import sqlalchemy as sa
 
-from sqlalchemy.orm import DeclarativeBase, mapped_column, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
@@ -28,13 +28,17 @@ class Base(DeclarativeBase):
 class TableName(Base):
     __tablename__ = 'table_name'
 
-    user_id = mapped_column(primary_key=True)
-    name = mapped_column('name', sa.String(32))
-    age = mapped_column('age', sa.SmallInteger)
+    pk: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column('name', sa.String(32))
+    age: Mapped[int] = mapped_column('age', sa.SmallInteger)
 
     def __init__(self, name=None, age=None):
         self.name = name
         self.age = age
+
+    def __repr__(self) -> str:
+        return f'TableName(id={self.pk!r}, name={self.name!r}, age={self.age!r})'
+
 
 
 if __name__ == '__main__':
