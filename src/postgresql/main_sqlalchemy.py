@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
-'''CRUD - SQLAlchemy - SQLite3.'''
+"""CRUD - SQLAlchemy - psycopg2 - PostgreSQL."""
 
-import pathlib
-
-from sqlalchemy import (SmallInteger, String, create_engine, insert, select, delete, update)
+from sqlalchemy import (SmallInteger, String, URL,
+                        create_engine, insert, select, delete, update)
 from sqlalchemy.orm import DeclarativeBase, Mapped, sessionmaker, mapped_column
 
-BASE_DIR = pathlib.Path(__file__).resolve().parent
 
-# In-Memory Database.
-# engine = sa.create_engine(url='sqlite://')
-engine = create_engine(url='sqlite:///:memory:')
+url_object = URL.create(
+    drivername='postgresql+psycopg',
+    username='dbuser',
+    password='123456',
+    host='localhost',
+    port='5432',
+    database='database_name',
+)
 
-# Local file.
-# engine = sa.create_engine(url=f'sqlite:///{BASE_DIR.joinpath('db.sqlite3')}')
+engine = create_engine(url_object)
 
 Session = sessionmaker(bind=engine)
 

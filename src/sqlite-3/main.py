@@ -15,15 +15,15 @@ cur = con.cursor()
 
 cur.execute('DROP TABLE IF EXISTS table_name;')
 
-table_name = '''CREATE TABLE IF NOT EXISTS `table_name` (
-`id`    INTEGER     NOT NULL PRIMARY KEY,
-`name`  VARCHAR(32) NOT NULL,
-`age`   SMALLINT    NOT NULL
+table_name = '''CREATE TABLE IF NOT EXISTS table_name (
+id    INTEGER NOT NULL PRIMARY KEY,
+name  VARCHAR(32),
+age   SMALLINT
 );'''
 cur.execute(table_name)
 
 # Create.
-# print('[!] Create [!]')
+print('[!] Create [!]')
 query = 'INSERT INTO table_name (name, age) VALUES (?, ?);'
 cur.execute(
     query,
@@ -60,7 +60,6 @@ cur.execute(
 )
 print(cur.fetchone())
 
-# Filter.
 query = 'SELECT * FROM table_name WHERE age > ?;'
 cur.execute(
     query,

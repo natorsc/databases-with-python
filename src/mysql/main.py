@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""CRUD - MySQL Connector - MariaDB."""
+"""CRUD - MySQL Connector - MySQL."""
 
 from mysql.connector import connect
 

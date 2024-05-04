@@ -73,6 +73,8 @@ Driver do MS Access:
 - [Driver Access 2010](https://www.microsoft.com/en-us/download/details.aspx?id=54920).
 - [Driver Access 2016](https://www.microsoft.com/en-US/download/details.aspx?id=13255).
 
+https://www.microsoft.com/en-us/download/details.aspx?id=54920
+
 > **OBS**:
 > - `*.accdb`: Formato utilizado pelo Access 2007 em diante.
 > - `*.mdb`: Formato utilizado pelo Access 97, Access 2000, Access 2002 ou Access 2003.
@@ -87,6 +89,11 @@ Dependência
 ### [SQL Server](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)
 
 ### Dependências
+
+#### macOS
+
+brew install unixodbc
+python -m pip install pyodbc
 
 #### Arch Linux
 

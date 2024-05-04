@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
-"""CRUD - MySQL Connector - MariaDB."""
+"""CRUD - psycopg - PostgreSQL."""
 
-from mysql.connector import connect
+from psycopg import connect
 
 # Conexão (commit, rollback, close, etc).
 con = connect(
     user='dbuser',
     password='123456',
     host='localhost',
-    port='3306',
-    database='database_name'
+    port='5432',
+    dbname='database_name'
 )
 
 # config = {
 #    'user': 'dbuser',
 #    'password': '123456',
 #    'host': 'localhost',
-#    'port': '3306',
-#    'database': 'database_name'
+#    'port': '5432',
+#    'dbname': 'database_name'
 # }
 # con = connect(**config)
 
@@ -27,7 +27,7 @@ cur = con.cursor()
 cur.execute('DROP TABLE IF EXISTS table_name;')
 
 table_name = '''CREATE TABLE IF NOT EXISTS table_name (
-id    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id    serial PRIMARY KEY,
 name  VARCHAR(32),
 age   SMALLINT
 );'''

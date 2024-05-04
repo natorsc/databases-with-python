@@ -1,13 +1,11 @@
-version: '3'
-
 services:
   db:
     image: postgres:16.2
     container_name: PostgreSQL
     restart: on-failure
+    shm_size: 128mb
     ports:
       - '5432:5432'
-
     environment:
       POSTGRES_USER: dbuser
       POSTGRES_PASSWORD: 123456

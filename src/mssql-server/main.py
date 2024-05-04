@@ -1,27 +1,19 @@
 # -*- coding: utf-8 -*-
-"""CRUD - MySQL Connector - MariaDB."""
+"""CRUD - PyODBC - MS SQL Server.
 
-from mysql.connector import connect
+tcp:192.168.100.175\sqlexpress,1433;
+ user_id   INT             IDENTITY(1, 1)  NOT NULL,
+"""
 
-# Conexão (commit, rollback, close, etc).
-con = connect(
-    user='dbuser',
-    password='123456',
-    host='localhost',
-    port='3306',
-    database='database_name'
+import pyodbc
+
+con = pyodbc.connect(
+    'DRIVER={ODBC Driver 18 for SQL Server};'
+    'SERVER=localhost\sqldeveloper,1433;'
+    'DATABASE=;'
+    'UID=sa;'
+    'PWD=Docker.123456'
 )
-
-# config = {
-#    'user': 'dbuser',
-#    'password': '123456',
-#    'host': 'localhost',
-#    'port': '3306',
-#    'database': 'database_name'
-# }
-# con = connect(**config)
-
-# Cursor (DML, DDL, etc).
 cur = con.cursor()
 
 cur.execute('DROP TABLE IF EXISTS table_name;')
