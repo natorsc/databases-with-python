@@ -16,42 +16,100 @@ cur = con.cursor()
 cur.execute('DROP TABLE IF EXISTS table_name;')
 
 table_name = '''CREATE TABLE IF NOT EXISTS `table_name` (
-`user_id`   INTEGER     NOT NULL, AUTO_INCREMENT,
-`name`      VARCHAR(32) NOT NULL,
-`age`       INTEGER(3)  NOT NULL,
-PRIMARY KEY(user_id)
+`id`    INTEGER     NOT NULL PRIMARY KEY,
+`name`  VARCHAR(32) NOT NULL,
+`age`   SMALLINT    NOT NULL
 );'''
 cur.execute(table_name)
 
 # Create.
-insert_user = 'INSERT INTO table_name (name, age) VALUES (?, ?);'
-
-user = ('Felipe', 35)
-cur.execute(insert_user, user)
-
-users = (
-    ('Augusto', 18),
-    ('Helena', 40),
+# print('[!] Create [!]')
+query = 'INSERT INTO table_name (name, age) VALUES (?, ?);'
+cur.execute(
+    query,
+    ('renato', 35),
 )
-cur.executemany(insert_user, users)
+
+# Bulk create.
+cur.executemany(
+    query,
+    (
+        ('maria', 25),
+        ('sandy', 19),
+    )
+)
 
 # Read.
-select_user = 'SELECT * FROM table_name WHERE user_id = ?;'
-cur.execute(select_user, (1,))
+print('\n[!] Read [!]')
+cur.execute('SELECT * FROM table_name;')
+print(cur.fetchall())
+
+# Limit.
+query = 'SELECT * FROM table_name LIMIT ?;'
+cur.execute(
+    query,
+    (3,),
+)
+print(cur.fetchall())
+
+# Where.
+query = 'SELECT * FROM table_name WHERE id = ?;'
+cur.execute(
+    query,
+    (1,),
+)
 print(cur.fetchone())
 
-cur.execute('SELECT * FROM table_name LIMIT ?;', (10,))
+# Filter.
+query = 'SELECT * FROM table_name WHERE age > ?;'
+cur.execute(
+    query,
+    (20,),
+)
 print(cur.fetchall())
 
 # Update.
-update_user = '''UPDATE table_name
-SET name = ?, age = ?
-WHERE user_id = ?;'''
-cur.execute(update_user, ('New name', 80, 1))
+print('\n[!] Update [!]')
+query = 'SELECT * FROM table_name WHERE id = ?;'
+cur.execute(
+    query,
+    (1,),
+)
+print(cur.fetchone())
+
+query = 'UPDATE table_name SET name = ? WHERE id = ?;'
+cur.execute(
+    query,
+    ('joão', 1),
+)
+
+query = 'SELECT * FROM table_name WHERE id = ?;'
+cur.execute(
+    query,
+    (1,),
+)
+print(cur.fetchone())
 
 # Delete.
-cur.execute('DELETE FROM table_name WHERE user_id = ?;', (3,))
-cur.execute('SELECT * FROM table_name;')
-print(cur.fetchall())
+print('\n[!] Delete [!]')
+query = 'SELECT * FROM table_name WHERE id = ?;'
+cur.execute(
+    query,
+    (1,),
+)
+print(cur.fetchone())
+
+query = 'DELETE FROM table_name WHERE id = ?;'
+cur.execute(
+    query,
+    (1,),
+)
+
+query = 'SELECT * FROM table_name WHERE id = ?;'
+cur.execute(
+    query,
+    (1,),
+)
+print(cur.fetchone())
 
 con.close()

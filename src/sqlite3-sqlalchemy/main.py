@@ -3,7 +3,7 @@
 
 import pathlib
 
-from sqlalchemy import SmallInteger, String, create_engine, insert, select, update, delete
+from sqlalchemy import (SmallInteger, String, create_engine, insert, select, delete, update)
 from sqlalchemy.orm import DeclarativeBase, Mapped, sessionmaker, mapped_column
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
@@ -87,14 +87,14 @@ if __name__ == '__main__':
 
     # Read.
     print('\n[!] Read [!]')
-    result = session.get(TableName, 1)
-    print(result)
-
-    # Read all.
     result = session.scalars(
         select(TableName),
     )
     print(result.all())
+
+    # Get by id.
+    result = session.get(TableName, 1)
+    print(result)
 
     # Limit.
     result = session.scalars(
