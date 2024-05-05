@@ -70,8 +70,7 @@ Código só funciona no Microsoft Windows, uma vez que é necessário instalar o
 
 Driver do MS Access:
 
-- [Driver Access 2010](https://www.microsoft.com/en-us/download/details.aspx?id=54920).
-- [Driver Access 2016](https://www.microsoft.com/en-US/download/details.aspx?id=13255).
+- [Microsoft Access Database Engine 2016 Redistributable](https://www.microsoft.com/pt-br/download/details.aspx?id=54920).
 
 https://www.microsoft.com/en-us/download/details.aspx?id=54920
 

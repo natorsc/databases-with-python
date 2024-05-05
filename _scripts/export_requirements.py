@@ -4,7 +4,6 @@
 import pathlib
 import subprocess
 
-
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 ROOT_DIR = BASE_DIR.parent
 

@@ -1,20 +1,25 @@
 # -*- coding: utf-8 -*-
-'''CRUD - SQLAlchemy - MySQL Connector - MariaDB.'''
+'''CRUD - SQLAlchemy - pyodbc - SQL Server (MSSQL).'''
 
 from sqlalchemy import (SmallInteger, String, URL,
                         create_engine, insert, select, delete, update)
 from sqlalchemy.orm import DeclarativeBase, Mapped, sessionmaker, mapped_column
 
 url_object = URL.create(
-    drivername='mssql+pyodbc://sa:Docker.123456@localhost',
-    username='dbuser',
-    password='123456',
+    'mssql+pyodbc',
+    username='sa',
+    password='Docker.123456',
     host='localhost',
-    port='3306',
-    database='database_name',
+    port=1433,
+    database='master',
+    query={
+        'driver': 'ODBC Driver 18 for SQL Server',
+        'TrustServerCertificate': 'yes',
+        # 'authentication': 'ActiveDirectoryIntegrated',
+    },
 )
 
-engine = create_engine('mssql+pyodbc://sa:Docker.123456@localhost')
+engine = create_engine(url_object)
 
 Session = sessionmaker(bind=engine)
 
