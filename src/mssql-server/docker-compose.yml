@@ -8,5 +8,5 @@ services:
     environment:
       ACCEPT_EULA: 'Y'
       SA_PASSWORD: 'Docker.123456'
-      # MSSQL_PID: 'Developer'
-      MSSQL_PID: 'Express'
+      MSSQL_PID: 'Developer'
+      # MSSQL_PID: 'Express'

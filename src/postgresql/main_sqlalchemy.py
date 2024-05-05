@@ -5,7 +5,6 @@ from sqlalchemy import (SmallInteger, String, URL,
                         create_engine, insert, select, delete, update)
 from sqlalchemy.orm import DeclarativeBase, Mapped, sessionmaker, mapped_column
 
-
 url_object = URL.create(
     drivername='postgresql+psycopg',
     username='dbuser',
