@@ -1,44 +1,40 @@
-:og:type: site
-:og:author: Renato Cruz (natorsc)
-:og:title: criando interfaces gráficas com Python (PyGObject) e GTK - justCode
-:og:description: Aprenda a criar interfaces gráficas com o toolkit GTK e a linguagem de programação Python (PyGObject).
+.. Databases documentation master file, created by
+   sphinx-quickstart on Mon May  6 09:09:57 2024.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
 
-.. meta::
-   :author: Renato Cruz (natorsc)
-   :description: Aprenda a criar interfaces gráficas com o toolkit GTK e a linguagem de programação Python (PyGObject).
-   :description lang=en: Learn how to create graphical user interfaces with the GTK toolkit and the Python programming language (PyGObject).
-   :keywords: Gnome, GTK, Libadwaita, Python, PyGObject, Blueprint,
-
-.. figure:: ../images/pygobject-gtk-1600x840.webp
-   :alt: criando interfaces gráficas com Python (PyGObject) e GTK
-   :align: center
-   :width: 1600
-
-   criando interfaces gráficas com Python (PyGObject) e GTK
-
-========================================================
-criando interfaces gráficas com Python (PyGObject) e GTK
-========================================================
-
-Documentação criada para centralizar dicas, tutoriais e exemplos de código sobre a construção de interfaces gráficas com a linguagem de programação Python (PyGObject) e o toolkit gráfico GTK.
-
-Conteúdo
-========
+Databases
+=========
 
 .. toctree::
-   :caption: GTK
+   :maxdepth: 2
+   :caption: Introdução:
 
-   gtk-about
-   gtk-widgets
-
-.. toctree::
-   :caption: Libadwaita
-
-   libadwaita-about
-   libadwaita-widgets
-   libadwaita-style-class
+   sql
+   nosql
+   sqlalchemy
+   docker
+   podman
 
 .. toctree::
-   :caption: Sobre
-   
-   contribute
+   :maxdepth: 2
+   :caption: SQL:
+
+   mariadb
+   mysql
+   postgresql
+   sqlite
+
+.. toctree::
+   :maxdepth: 2
+   :caption: NoSQL:
+
+   mongodb
+   redis
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
