@@ -5,29 +5,32 @@ description = "Default template for PDM package"
 authors = [
     {name = "Renato Cruz", email = "natorsc@gmail.com"},
 ]
-dependencies = [
-    "python-lsp-server[all]>=1.11.0",
-    "mysql-connector-python>=8.4.0",
-    "mongoengine>=0.28.2",
-    "pymongo>=4.7.1",
-    "pyodbc>=5.1.0",
-    "SQLAlchemy>=2.0.29",
-    "psycopg[binary,pool]>=3.1.18",
-    "redis[hiredis]>=5.0.4",
-]
 requires-python = ">=3.11,<3.13"
 readme = "README.md"
 license = {text = "MIT"}
 
+dependencies = [
+    "mysql-connector-python>=8.4.0",
+    "mongoengine>=0.28.2",
+    "pymongo>=4.7.1",
+    "pyodbc>=5.1.0",
+    "SQLAlchemy>=2.0.30",
+    "psycopg[binary,pool]>=3.1.18",
+    "redis[hiredis]>=5.0.4",
+]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "python-lsp-server[all]>=1.11.0",
+]
 
 [project.optional-dependencies]
 docs = [
     "sphinx>=7.3.7",
     "sphinx-copybutton>=0.5.2",
     "sphinx-inline-tabs>=2023.4.21",
-    "sphinxext-opengraph>=0.9.1",
-    "sphinx-sitemap>=2.6.0",
     "furo>=2024.4.27",
 ]
+
 [tool.pdm]
 distribution = false
