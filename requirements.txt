@@ -15,7 +15,7 @@ dnspython==2.6.1
 docstring-to-markdown==0.15
 docutils==0.21.2
 flake8==7.0.0
-furo==2024.4.27
+furo==2024.5.6
 greenlet==3.0.3; platform_machine == "win32" or platform_machine == "WIN32" or platform_machine == "AMD64" or platform_machine == "amd64" or platform_machine == "x86_64" or platform_machine == "ppc64le" or platform_machine == "aarch64"
 hiredis==2.3.2
 idna==3.7
@@ -54,15 +54,13 @@ sphinx==7.3.7
 sphinx-basic-ng==1.0.0b2
 sphinx-copybutton==0.5.2
 sphinx-inline-tabs==2023.4.21
-sphinx-sitemap==2.6.0
 sphinxcontrib-applehelp==1.0.8
 sphinxcontrib-devhelp==1.0.6
 sphinxcontrib-htmlhelp==2.0.5
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.7
 sphinxcontrib-serializinghtml==1.1.10
-sphinxext-opengraph==0.9.1
-sqlalchemy==2.0.29
+sqlalchemy==2.0.30
 tomli==2.0.1
 tomlkit==0.12.4
 typing-extensions==4.11.0

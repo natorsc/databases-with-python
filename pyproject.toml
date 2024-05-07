@@ -29,7 +29,7 @@ docs = [
     "sphinx>=7.3.7",
     "sphinx-copybutton>=0.5.2",
     "sphinx-inline-tabs>=2023.4.21",
-    "furo>=2024.4.27",
+    "furo>=2024.5.6",
 ]
 
 [tool.pdm]
