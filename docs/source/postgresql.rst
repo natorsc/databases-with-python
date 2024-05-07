@@ -17,32 +17,31 @@ Principais Conceitos do PostgreSQL
 4. **Chaves Primárias e Estrangeiras**: As chaves primárias são colunas em uma tabela que identificam exclusivamente cada registro na tabela. As chaves estrangeiras são usadas para estabelecer relacionamentos entre tabelas, permitindo consultas complexas que envolvem dados de várias tabelas.
 5. **Índices**: Os índices são estruturas de dados usadas para acelerar a recuperação de dados de uma tabela. Eles são criados em colunas específicas e ajudam o PostgreSQL a encontrar registros com base em critérios de pesquisa de maneira mais eficiente.
 
-**Exemplo Prático**
+Psycopg
+-------
 
-Vamos ver um exemplo simples de criação de uma tabela e inserção de dados usando o PostgreSQL:
+Psycopg é um adaptador de banco de dados PostgreSQL para a linguagem de programação Python. Ele permite que os programas Python se conectem a um banco de dados PostgreSQL, enviem consultas SQL e manipulem os resultados dessas consultas.
 
-1. **Criar uma Tabela**:
+O Psycopg é amplamente utilizado devido à sua facilidade de uso e eficiência, sendo uma escolha popular para desenvolvedores que trabalham com Python e PostgreSQL.
 
-```sql
-CREATE TABLE usuarios (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(50),
-    idade INT
-);
-```
+Contêiner
+`````````
 
-2. **Inserir Dados na Tabela**:
+Os códigos de exemplo foram testados no contêiner:
 
-```sql
-INSERT INTO usuarios (nome, idade) VALUES ('João', 30);
-INSERT INTO usuarios (nome, idade) VALUES ('Maria', 25);
-```
+.. literalinclude:: ../../src/postgresql/docker-compose.yml
 
-3. **Consultar Dados da Tabela**:
+Exemplo prático
+```````````````
 
-```sql
-SELECT * FROM usuarios;
-```
+Vamos ver um exemplo simples de como usar o MariaDB para criar uma tabela e inserir alguns dados.
+
+.. literalinclude:: ../../src/postgresql/main.py
+
+Exemplo prático com SQLAlchemy
+``````````````````````````````
+
+.. literalinclude:: ../../src/postgresql/main_sqlalchemy.py
 
 Conclusão
 ---------

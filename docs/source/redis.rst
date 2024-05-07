@@ -23,29 +23,19 @@ Principais Conceitos do Redis
 4. **Persistência Opcional**: Embora o Redis seja um banco de dados em memória, ele suporta persistência opcional em disco. Isso significa que os dados podem ser armazenados em disco para recuperação em caso de falha ou reinicialização do servidor.
 5. **Pub/Sub (Publicação/Assinatura)**: O Redis suporta um sistema de mensagens de publicação/assinatura, que permite que os clientes publiquem mensagens em canais e se inscrevam para receber mensagens de canais específicos. Isso é útil para comunicação em tempo real entre clientes e servidores.
 
-Exemplo Prático
+Contêiner
+---------
+
+Os códigos de exemplo foram testados no contêiner:
+
+.. literalinclude:: ../../src/redis/docker-compose.yml
+
+Exemplo prático
 ---------------
 
-Vamos ver um exemplo simples de como usar o Redis para armazenar e recuperar dados:
+Vamos ver um exemplo simples de como usar o MariaDB para criar uma tabela e inserir alguns dados.
 
-1. **Instalação e Conexão ao Redis**:
-
-Antes de começar, certifique-se de ter o Redis instalado em sua máquina ou servidor.
-
-Você também precisará do cliente Redis para Python, que pode ser instalado usando o pip:
-
-.. code-block::
-
-    pip install redis
-
-Agora, você pode se conectar ao Redis usando o cliente Redis para Python:
-
-.. code-block::
-
-    import redis
-
-    # Conectar ao servidor Redis
-    redis_client = redis.Redis(host='localhost', port=6379, db=0)
+.. literalinclude:: ../../src/redis/main.py
 
 Conclusão
 ---------

@@ -17,33 +17,39 @@ Principais Conceitos do MySQL
 4. **Chaves Primárias e Estrangeiras**: As chaves primárias são colunas em uma tabela que identificam exclusivamente cada registro na tabela. As chaves estrangeiras são usadas para estabelecer relacionamentos entre tabelas, permitindo consultas complexas que envolvem dados de várias tabelas.
 5. **Índices**: Os índices são estruturas de dados usadas para acelerar a recuperação de dados de uma tabela. Eles são criados em colunas específicas e ajudam o MySQL a encontrar registros com base em critérios de pesquisa de maneira mais eficiente.
 
-Exemplo Prático
----------------
+mysql-connector-python
+----------------------
 
-Vamos ver um exemplo simples de criação de uma tabela e inserção de dados usando o MySQL:
+O `mysql-connector-python`_ é um conector Python oficial fornecido pela `Oracle`_  para conectar aplicativos Python ao MySQL. Ele permite que os desenvolvedores escrevam código Python para interagir com um banco de dados MySQL, executando consultas, inserindo dados, atualizando registros e muito mais.
 
-1. **Criar uma Tabela**:
+Este conector é uma biblioteca Python que implementa o protocolo de comunicação MySQL nativo, permitindo que o Python se comunique diretamente com o servidor MySQL. Ele fornece uma maneira fácil e eficaz de trabalhar com bancos de dados MySQL em aplicativos Python.
 
-.. code-block:: sql
+O `mysql-connector-python` pode ser instalado usando o `pip`, que é o gerenciador de pacotes padrão do Python. Por exemplo, para instalar o `mysql-connector-python`, você pode usar o seguinte comando:
 
-    CREATE TABLE usuarios (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(50),
-        idade INT
-    );
+.. code-block:: bash
 
-2. **Inserir Dados na Tabela**:
+    pip install mysql-connector-python
 
-.. code-block:: sql
+Depois de instalado, você pode importar o conector em seus scripts Python e usá-lo para se conectar a um servidor MySQL e executar operações de banco de dados.
 
-    INSERT INTO usuarios (nome, idade) VALUES ('João', 30);
-    INSERT INTO usuarios (nome, idade) VALUES ('Maria', 25);
+Contêiner
+`````````
 
-3. **Consultar Dados da Tabela**:
+Os códigos de exemplo foram testados no contêiner:
 
-.. code-block:: sql
+.. literalinclude:: ../../src/mysql/docker-compose.yml
 
-    SELECT * FROM usuarios;
+Exemplo prático
+```````````````
+
+Vamos ver um exemplo simples de como usar o MariaDB para criar uma tabela e inserir alguns dados.
+
+.. literalinclude:: ../../src/mysql/main.py
+
+Exemplo prático com SQLAlchemy
+``````````````````````````````
+
+.. literalinclude:: ../../src/mysql/main_sqlalchemy.py
 
 Conclusão
 ---------

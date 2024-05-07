@@ -32,13 +32,21 @@ O `pymongo` pode ser instalado usando o `pip`, que é o gerenciador de pacotes p
 
 Depois de instalado, você pode importar o `pymongo` em seus scripts Python e usá-lo para interagir com o MongoDB de forma fácil e eficiente.
 
-
 Vamos ver um exemplo simples de como usar o MongoDB para criar uma coleção e inserir um documento.
+
+Contêiner
+`````````
+
+Os códigos de exemplo foram testados no contêiner:
+
+.. literalinclude:: ../../src/mongodb/docker-compose.yml
 
 Exemplo prático
 ```````````````
 
+Vamos ver um exemplo simples de como usar o MariaDB para criar uma tabela e inserir alguns dados.
 
+.. literalinclude:: ../../src/mongoengine/main.py
 
 Conclusão
 ---------

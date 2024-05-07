@@ -23,46 +23,27 @@ Principais Conceitos do SQLite
 4. **Transações**: O SQLite suporta transações ACID (Atomicidade, Consistência, Isolamento, Durabilidade), o que significa que as operações de banco de dados são executadas de forma segura e confiável, mesmo em casos de falha.
 5. **Índices**: Os índices no SQLite são estruturas de dados usadas para acelerar a recuperação de dados de uma tabela. Eles são criados em colunas específicas e ajudam o SQLite a encontrar registros com base em critérios de pesquisa de maneira mais eficiente.
 
-Exemplo Prático
----------------
-
 Vamos ver um exemplo simples de criação de uma tabela e inserção de dados usando o SQLite:
 
-1. **Conectar ao Banco de Dados**:
+Contêiner
+---------
 
-.. code-block: python
+Os códigos de exemplo foram testados no contêiner:
 
-    import sqlite3
+.. literalinclude:: ../../src/sqlite-3/docker-compose.yml
 
-    # Conectar ao banco de dados (será criado se não existir)
-    conexao = sqlite3.connect('meu_banco_de_dados.db')
-    cursor = conexao.cursor()
+Exemplo prático
+---------------
 
-2. **Criar uma Tabela e Inserir Dados**:
+Vamos ver um exemplo simples de como usar o MariaDB para criar uma tabela e inserir alguns dados.
 
-.. code-block: python
+.. literalinclude:: ../../src/sqlite-3/main.py
 
-    # Criar uma tabela
-    cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios
-                (id INTEGER PRIMARY KEY, nome TEXT, idade INTEGER)''')
+Exemplo prático com SQLAlchemy
+------------------------------
 
-    # Inserir dados na tabela
-    cursor.execute("INSERT INTO usuarios (nome, idade) VALUES ('João', 30)")
-    cursor.execute("INSERT INTO usuarios (nome, idade) VALUES ('Maria', 25)")
+.. literalinclude:: ../../src/sqlite-3/main_sqlalchemy.py
 
-    # Commitar a transação
-    conexao.commit()
-
-
-3. **Consultar Dados da Tabela**:
-
-.. code-block: python
-    
-    # Consultar todos os registros na tabela
-    cursor.execute("SELECT * FROM usuarios")
-    registros = cursor.fetchall()
-    for registro in registros:
-        print(registro)
     
 Conclusão
 ---------
