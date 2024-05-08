@@ -55,6 +55,47 @@ Exemplo prático com SQLAlchemy
 
 .. literalinclude:: ../../src/mariadb/main_sqlalchemy.py
 
+mariadb
+-------
+
+.. code-block:: bash
+
+    pip install mariadb
+
+Dependencias
+------------
+
+macOS
+
+.. code-block:: bash
+    
+    brew install \
+    mariadb-connector-c
+
+Linux
+
+Arch Linux
+
+.. code-block:: bash
+
+    sudo pacman -S \
+    openssl
+
+Fedora
+
+.. code-block:: bash
+
+    sudo dnf install \
+    openssl
+
+Ubuntu
+
+.. code-block:: bash
+
+    sudo apt install \
+    openssl
+
+
 Conclusão
 ---------
 

@@ -5,7 +5,7 @@
 groups = ["default", "docs", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:7b7abc988da1ba857649668356dd0148cfa8fe05f045f1e992fd2ed0a3eb64dd"
+content_hash = "sha256:614ad037e6128a0a34acfde8c40dbd18c5b90fa79dcbc20b5bac338ecb9e061e"
 
 [[package]]
 name = "alabaster"
@@ -387,6 +387,23 @@ files = [
 ]
 
 [[package]]
+name = "mariadb"
+version = "1.1.10"
+requires_python = ">=3.8"
+summary = "Python MariaDB extension"
+groups = ["default"]
+dependencies = [
+    "packaging",
+]
+files = [
+    {file = "mariadb-1.1.10-cp311-cp311-win32.whl", hash = "sha256:1ce87971c02375236ff8933e6c593c748e7b2f2950b86eabfab4289fd250ea63"},
+    {file = "mariadb-1.1.10-cp311-cp311-win_amd64.whl", hash = "sha256:4521aa721f926946bd71491f872e8babc78fa97755ed2114f5684b77363107cb"},
+    {file = "mariadb-1.1.10-cp312-cp312-win32.whl", hash = "sha256:03d6284ef713d1cad40146576a4cc2d6cbc1662060f2a0e59b174e1694521698"},
+    {file = "mariadb-1.1.10-cp312-cp312-win_amd64.whl", hash = "sha256:8c8c6b27486b0e1772a23002c702b5fd244eecf9f05633dd6cb345fc26755a20"},
+    {file = "mariadb-1.1.10.tar.gz", hash = "sha256:a332893e3ef7ceb7970ab4bd7c844bcb4bd68a051ca51313566f9808d7411f2d"},
+]
+
+[[package]]
 name = "markupsafe"
 version = "2.1.5"
 requires_python = ">=3.7"
@@ -467,7 +484,7 @@ name = "packaging"
 version = "24.0"
 requires_python = ">=3.7"
 summary = "Core utilities for Python packages"
-groups = ["dev", "docs"]
+groups = ["default", "dev", "docs"]
 files = [
     {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5"},
     {file = "packaging-24.0.tar.gz", hash = "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"},
