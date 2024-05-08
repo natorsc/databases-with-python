@@ -18,9 +18,28 @@ Databases
 
 .. toctree::
    :maxdepth: 2
-   :caption: SQL:
+   :caption: MariaDB:
 
    mariadb
+   mariadb-connector
+
+.. toctree::
+   :maxdepth: 2
+   :caption: MySQL:
+
+   mysql-connector
+
+.. toctree::
+   :maxdepth: 2
+   :caption: MongoDB:
+
+   pymongo
+   mongoengine
+
+.. toctree::
+   :maxdepth: 2
+   :caption: SQL:
+
    mysql
    postgresql
    sqlite
