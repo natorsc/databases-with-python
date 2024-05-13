@@ -1,0 +1,11 @@
+services:
+  db:
+    image: mongo:latest
+    container_name: MongoDB
+    restart: on-failure
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: dbuser
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+      MONGO_INITDB_DATABASE: database_name

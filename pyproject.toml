@@ -1,0 +1,29 @@
+[project]
+name = "databases-with-python"
+version = "0.1.0"
+description = "Como utilizar a linguagem de programação Python com diversos bancos de dados."
+authors = [
+    {name = "Renato Cruz", email = "natorsc@gmail.com"},
+]
+requires-python = ">=3.11,<3.13"
+readme = "README.md"
+license = {text = "MIT"}
+
+dependencies = [
+    "mysql-connector-python>=8.4.0",
+    "mongoengine>=0.28.2",
+    "pymongo>=4.7.2",
+    "pyodbc>=5.1.0",
+    "SQLAlchemy>=2.0.30",
+    "psycopg[binary,pool]>=3.1.19",
+    "redis[hiredis]>=5.0.4",
+    "mariadb>=1.1.10",
+]
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "python-lsp-server[all]>=1.11.0",
+]
+
+[tool.pdm]
+distribution = false
