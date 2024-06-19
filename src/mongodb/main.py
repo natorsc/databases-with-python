@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''CRUD - Python - PyMongo - MongoDB.'''
+"""CRUD - Python - PyMongo - MongoDB."""
 
 from bson import ObjectId
 from pymongo import MongoClient, ReturnDocument
@@ -45,7 +45,6 @@ result = collection.insert_many(
     [
         {'name': 'maria', 'age': 25},
         {'name': 'sandy', 'age': 19},
-
     ],
 )
 print(result.inserted_ids)

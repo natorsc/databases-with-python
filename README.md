@@ -8,7 +8,7 @@
 
 [![License MIT](https://img.shields.io/static/v1?label=License&message=MIT&color=blue)](./LICENSE)
 
-[![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm-project.org)
+[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 
 ## 📝 Descrição
 

@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
-'''CRUD - SQLAlchemy - SQLite3.'''
+"""CRUD - SQLAlchemy - SQLite3."""
 
 import pathlib
 
-from sqlalchemy import (SmallInteger, String,
-                        create_engine, insert, select, delete, update)
-from sqlalchemy.orm import DeclarativeBase, Mapped, sessionmaker, mapped_column
+from sqlalchemy import (
+    SmallInteger,
+    String,
+    create_engine,
+    delete,
+    insert,
+    select,
+    update,
+)
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
 
@@ -47,8 +54,7 @@ if __name__ == '__main__':
     # Create.
     print('[!] Create [!]')
     session.execute(
-        insert(TableName)
-        .values(
+        insert(TableName).values(
             name='renato',
             age=35,
         ),
@@ -76,8 +82,7 @@ if __name__ == '__main__':
     )
 
     result = session.scalars(
-        insert(TableName)
-        .returning(TableName),
+        insert(TableName).returning(TableName),
         [
             {'name': 'patrick', 'age': 33},
             {'name': 'gisele', 'age': 21},
@@ -99,28 +104,24 @@ if __name__ == '__main__':
 
     # Limit.
     result = session.scalars(
-        select(TableName)
-        .limit(3),
+        select(TableName).limit(3),
     )
     print(result.all())
 
     # Where.
     result = session.scalars(
-        select(TableName)
-        .where(TableName.age > 30),
+        select(TableName).where(TableName.age > 30),
     )
     print(result.all())
 
     result = session.scalar(
-        select(TableName)
-        .where(TableName.id == 1),
+        select(TableName).where(TableName.id == 1),
     )
     print(result)
 
     # Filter.
     result = session.scalars(
-        select(TableName)
-        .filter_by(name='renato'),
+        select(TableName).filter_by(name='renato'),
     )
     print(result.all())
 
@@ -128,16 +129,13 @@ if __name__ == '__main__':
     print('\n[!] Update [!]')
     print(session.get(TableName, 1))
     session.execute(
-        update(TableName)
-        .where(TableName.id == 1)
-        .values(name='joão'),
+        update(TableName).where(TableName.id == 1).values(name='joão'),
     )
     print(session.get(TableName, 1))
 
     print(session.get(TableName, 2))
     result = session.scalar(
-        select(TableName)
-        .where(TableName.id == 2),
+        select(TableName).where(TableName.id == 2),
     )
     result.name = 'antônio'
     session.commit()
@@ -147,15 +145,13 @@ if __name__ == '__main__':
     print('\n[!] Delete [!]')
     print(session.get(TableName, 1))
     session.execute(
-        delete(TableName)
-        .where(TableName.id == 1),
+        delete(TableName).where(TableName.id == 1),
     )
     print(session.get(TableName, 1))
 
     print(session.get(TableName, 2))
     result = session.scalar(
-        select(TableName)
-        .where(TableName.id == 2),
+        select(TableName).where(TableName.id == 2),
     )
     session.delete(result)
     session.commit()

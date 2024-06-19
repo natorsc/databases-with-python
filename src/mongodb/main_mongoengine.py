@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''CRUD - Python - MongoEngine - MongoDB.'''
+"""CRUD - Python - MongoEngine - MongoDB."""
 
 from mongoengine import Document, IntField, StringField, connect
 
@@ -25,9 +25,7 @@ db = connect(
 class CollectionName(Document):
     name = StringField(max_length=32)
     age = IntField(min_value=0, max_value=150)
-    meta = {
-        'collection': 'collection_name'
-    }
+    meta = {'collection': 'collection_name'}
 
     def __str__(self):
         return f'name={self.name}, age={self.age}'

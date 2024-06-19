@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''CRUD - Python - PyODBC - SQL Server.'''
+"""CRUD - Python - PyODBC - SQL Server."""
 
 import pyodbc
 
@@ -16,12 +16,12 @@ cur = con.cursor()
 
 cur.execute('DROP TABLE IF EXISTS table_name;')
 
-table_name = '''IF OBJECT_ID(N'table_name', N'U') IS NULL
+table_name = """IF OBJECT_ID(N'table_name', N'U') IS NULL
 CREATE TABLE table_name (
 id      INT PRIMARY KEY IDENTITY,
 name    VARCHAR(32),
 age     SMALLINT
-);'''
+);"""
 cur.execute(table_name)
 
 # Create.
@@ -38,7 +38,7 @@ cur.executemany(
     (
         ('maria', 25),
         ('sandy', 19),
-    )
+    ),
 )
 
 # Read.

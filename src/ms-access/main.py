@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''CRUD - pyodbc - Microsoft Access.'''
+"""CRUD - pyodbc - Microsoft Access."""
 
 import pathlib
 
@@ -9,8 +9,7 @@ BASE_DIR = pathlib.Path(__file__).resolve().parent
 DB_FILE = BASE_DIR.joinpath('example.accdb')
 
 con = pyodbc.connect(
-    'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
-    f'DBQ={DB_FILE};'
+    'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};' f'DBQ={DB_FILE};'
 )
 
 # Cursor (DML, DDL, etc).
@@ -30,7 +29,7 @@ cur.executemany(
     (
         ('maria', 25),
         ('sandy', 19),
-    )
+    ),
 )
 
 # Read.

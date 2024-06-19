@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''CRUD - Python - Redis.'''
+"""CRUD - Python - Redis."""
 
 import redis
 
@@ -20,17 +20,11 @@ con.set('number', 0)
 
 con.hset(
     'user:1',
-    mapping={
-        'name': 'renato',
-        'age': 40
-    },
+    mapping={'name': 'renato', 'age': 40},
 )
 con.hset(
     'user:2',
-    mapping={
-        'name': 'joão',
-        'age': 20
-    },
+    mapping={'name': 'joão', 'age': 20},
 )
 
 # Read.

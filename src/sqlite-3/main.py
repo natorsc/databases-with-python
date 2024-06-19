@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''CRUD - Python - SQLite3.'''
+"""CRUD - Python - SQLite3."""
 
 import pathlib
 import sqlite3
@@ -15,11 +15,11 @@ cur = con.cursor()
 
 cur.execute('DROP TABLE IF EXISTS table_name;')
 
-table_name = '''CREATE TABLE IF NOT EXISTS table_name (
+table_name = """CREATE TABLE IF NOT EXISTS table_name (
 id    INTEGER NOT NULL PRIMARY KEY,
 name  VARCHAR(32),
 age   SMALLINT
-);'''
+);"""
 cur.execute(table_name)
 
 # Create.
@@ -36,7 +36,7 @@ cur.executemany(
     (
         ('maria', 25),
         ('sandy', 19),
-    )
+    ),
 )
 
 # Read.

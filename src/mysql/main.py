@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''CRUD - Python - MySQL Connector - MySQL.'''
+"""CRUD - Python - MySQL Connector - MySQL."""
 
 from mysql.connector import connect
 
@@ -9,7 +9,7 @@ con = connect(
     password='123456',
     host='localhost',
     port='3306',
-    database='database_name'
+    database='database_name',
 )
 
 # config = {
@@ -26,11 +26,11 @@ cur = con.cursor()
 
 cur.execute('DROP TABLE IF EXISTS table_name;')
 
-table_name = '''CREATE TABLE IF NOT EXISTS table_name (
+table_name = """CREATE TABLE IF NOT EXISTS table_name (
 id    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name  VARCHAR(32),
 age   SMALLINT
-);'''
+);"""
 cur.execute(table_name)
 
 # Create.
@@ -47,7 +47,7 @@ cur.executemany(
     (
         ('maria', 25),
         ('sandy', 19),
-    )
+    ),
 )
 
 # Read.
